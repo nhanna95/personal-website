@@ -119,7 +119,7 @@ permalink: /blog.html
 
             const art = document.createElement('article');
             art.className = 'post';
-            const wfmt = new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric' });
+            const wfmt = new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
             const wdateHTML = `<time class="post-date" datetime="${welcomePost.date}">${wfmt.format(new Date(welcomePost.date))}</time>`;
             art.innerHTML = `
                 <div class="post-head"><a class="post-title" href="${welcomePost.url}">${welcomePost.title}</a><span class="post-readtime" aria-label="Estimated read time"></span></div>
