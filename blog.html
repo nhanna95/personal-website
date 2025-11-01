@@ -26,7 +26,8 @@ permalink: /blog.html
 </section>
 
 <script>
-    (function () {
+    // Menu toggle handler - use DOMContentLoaded to ensure elements exist
+    document.addEventListener('DOMContentLoaded', function() {
         const toggle = document.getElementById('menu-toggle');
         const sidebar = document.querySelector('.sidebar');
         if (!toggle || !sidebar) return;
@@ -35,7 +36,7 @@ permalink: /blog.html
             toggle.setAttribute('aria-expanded', String(open));
             document.body.style.overflow = open ? 'hidden' : '';
         });
-    })();
+    });
 
     // Client-side search on blog list (searches titles, tags, and content)
     (function () {
@@ -70,8 +71,13 @@ permalink: /blog.html
         
         function filter() {
             const term = q.value.trim().toLowerCase();
-            const rows = [...list.querySelectorAll('.post')];
-            rows.forEach(r => {
+            // Search both welcome post and regular posts
+            const welcome = document.getElementById('welcome-post');
+            const allRows = [...list.querySelectorAll('.post')];
+            if (welcome) {
+                allRows.push(...welcome.querySelectorAll('.post'));
+            }
+            allRows.forEach(r => {
                 const title = r.querySelector('.post-title')?.textContent || '';
                 const tags = r.getAttribute('data-tags') || '';
                 const content = r.getAttribute('data-content') || '';
@@ -80,10 +86,14 @@ permalink: /blog.html
             });
         }
         
-        // Pre-fetch content for all posts
+        // Pre-fetch content for all posts (including welcome post)
         setTimeout(() => {
-            const rows = [...list.querySelectorAll('.post')];
-            rows.forEach(r => {
+            const welcome = document.getElementById('welcome-post');
+            const allRows = [...list.querySelectorAll('.post')];
+            if (welcome) {
+                allRows.push(...welcome.querySelectorAll('.post'));
+            }
+            allRows.forEach(r => {
                 const link = r.querySelector('.post-title');
                 if (link) {
                     const url = link.getAttribute('href');
