@@ -273,12 +273,20 @@ body {
     color: var(--muted);
 }
 
-.entry-updated-bottom {
+.entry-dates {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    align-items: center;
+}
+
+.entry-date-separator {
     color: var(--muted);
-    font-size: 0.9em;
-    margin-top: 1.5rem;
-    margin-bottom: 0;
-    font-style: italic;
+}
+
+.entry-updated {
+    color: var(--muted);
+    font-size: 0.95em;
 }
 
 .entry-meta .taglist li {
