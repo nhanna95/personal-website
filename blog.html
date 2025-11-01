@@ -168,7 +168,7 @@ permalink: /blog.html
             const wdateHTML = `<time class="post-date" datetime="${welcomePost.date}">${wformatted}</time>`;
             art.innerHTML = `
                 <div class="post-head"><a class="post-title" href="${welcomePost.url}">${welcomePost.title}</a><span class="post-readtime" aria-label="Estimated read time"></span></div>
-                <div class="post-meta">${wdateHTML}</div>
+                ${wdateHTML}
             `;
             welcome.appendChild(art);
 
@@ -211,10 +211,10 @@ permalink: /blog.html
             const readHTML = `<span class="post-readtime" aria-label="Estimated read time"></span>`;
             const tagsHTML = p.tags && p.tags.length ? 
                 `<ul class="taglist">${p.tags.map(t => `<li>${t}</li>`).join('')}</ul>` : '';
-            const metaHTML = tagsHTML ? `<div class="post-meta">${dateHTML}${tagsHTML}</div>` : dateHTML;
             art.innerHTML = `
                 <div class="post-head"><a class="post-title" href="${p.url}">${p.title}</a>${readHTML}</div>
-                ${metaHTML}
+                ${dateHTML}
+                ${tagsHTML}
             `;
             list.appendChild(art);
 
