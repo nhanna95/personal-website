@@ -1,8 +1,8 @@
 # Site settings
 title: Nixon Hanna
 description: Personal website and blog
-url: https://nhanna95.github.io
-baseurl: "/personal-website"  # Set to /repo-name if deploying to subdirectory
+url: https://nixonhanna.com
+baseurl: ""  # Empty for custom domain (served from root)
 
 # Build settings
 markdown: kramdown
