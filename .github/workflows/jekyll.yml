@@ -64,12 +64,19 @@ jobs:
           echo "=== Checking all CSS/JS/image files ==="
           find _site -type f \( -name "*.css" -o -name "*.js" -o -name "*.jpg" -o -name "*.png" \) | head -10
           echo ""
-          echo "=== Checking baseurl in built HTML ==="
+          echo "=== Checking asset paths in built HTML ==="
+          echo "CSS link:"
           grep -o 'href="[^"]*styles.css[^"]*"' _site/index.html || echo "No styles.css link found"
-          grep -o 'src="[^"]*headshot.jpg[^"]*"' _site/index.html | head -2 || echo "No headshot.jpg found"
+          echo "Headshot images:"
+          grep -o 'src="[^"]*headshot.jpg[^"]*"' _site/index.html || echo "No headshot.jpg found"
+          echo "Monogram:"
+          grep -o 'href="[^"]*monogram.png[^"]*"' _site/index.html || echo "No monogram.png found"
           echo ""
           echo "=== Full head section of index.html ==="
-          sed -n '/<head>/,/<\/head>/p' _site/index.html | head -15
+          sed -n '/<head>/,/<\/head>/p' _site/index.html
+          echo ""
+          echo "=== Checking if assets exist in _site root ==="
+          ls -la _site/*.css _site/*.jpg _site/*.png 2>&1 | head -5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
