@@ -12,13 +12,13 @@ permalink: /blog.html
             <input id="q" type="search" placeholder="Search posts" autocomplete="off" />
         </form>
     </div>
-</div>
+        </div>
 
-<!-- Tag Filter Bar (UNION) -->
-<form id="filters" class="tag-filter" aria-label="Filter posts by tag">
+        <!-- Tag Filter Bar (UNION) -->
+        <form id="filters" class="tag-filter" aria-label="Filter posts by tag">
     <!-- Tags will be injected dynamically -->
-    <button type="reset" class="tag reset">Reset</button>
-</form>
+            <button type="reset" class="tag reset">Reset</button>
+        </form>
 
 <section class="post-list" id="welcome-post"></section>
 <section class="post-list" id="post-list">
@@ -37,19 +37,61 @@ permalink: /blog.html
         });
     })();
 
-    // Simple client-side search on blog list
+    // Client-side search on blog list (searches titles, tags, and content)
     (function () {
         const q = document.getElementById('q');
         const list = document.getElementById('post-list');
         if (!q || !list) return;
+        
+        // Store content for each post
+        const postContentCache = new Map();
+        
+        // Fetch and cache content for all posts
+        function fetchPostContent(url, postElement) {
+            if (postContentCache.has(url)) return;
+            
+            fetch(url)
+                .then(r => r.ok ? r.text() : Promise.reject())
+                .then(html => {
+                    const tmp = document.createElement('div');
+                    tmp.innerHTML = html;
+                    const entry = tmp.querySelector('article.entry') || tmp;
+                    const text = (entry.textContent || '').trim();
+                    postContentCache.set(url, text);
+                    // Store in data attribute for search
+                    postElement.setAttribute('data-content', text);
+                })
+                .catch(() => {
+                    // If fetch fails, just set empty content
+                    postContentCache.set(url, '');
+                    postElement.setAttribute('data-content', '');
+                });
+        }
+        
         function filter() {
             const term = q.value.trim().toLowerCase();
             const rows = [...list.querySelectorAll('.post')];
             rows.forEach(r => {
-                const hay = (r.querySelector('.post-title').textContent + ' ' + (r.getAttribute('data-tags') || '')).toLowerCase();
+                const title = r.querySelector('.post-title')?.textContent || '';
+                const tags = r.getAttribute('data-tags') || '';
+                const content = r.getAttribute('data-content') || '';
+                const hay = (title + ' ' + tags + ' ' + content).toLowerCase();
                 r.style.display = term === '' || hay.includes(term) ? 'grid' : 'none';
             });
         }
+        
+        // Pre-fetch content for all posts
+        setTimeout(() => {
+            const rows = [...list.querySelectorAll('.post')];
+            rows.forEach(r => {
+                const link = r.querySelector('.post-title');
+                if (link) {
+                    const url = link.getAttribute('href');
+                    if (url) fetchPostContent(url, r);
+                }
+            });
+        }, 100);
+        
         q.addEventListener('input', filter);
     })();
 
