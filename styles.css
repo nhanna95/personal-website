@@ -649,6 +649,12 @@ main:has(#tag-personal:checked) .post[data-tags~="personal"] {
         font-size: 1rem;
     }
 
+    /* Uncenter the welcome post section on mobile */
+    #welcome-post {
+        align-self: flex-start;
+        width: 100%;
+    }
+
     .content>* {
         width: 100%;
     }
