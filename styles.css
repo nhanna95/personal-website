@@ -207,9 +207,7 @@ body {
 }
 
 .post-head {
-    display: flex;
-    align-items: baseline;
-    gap: .5rem;
+    display: block;
 }
 
 .post:last-of-type {
@@ -239,6 +237,7 @@ body {
     color: var(--muted);
     white-space: nowrap;
     font-size: .9em;
+    margin-left: .5rem;
 }
 
 .taglist {
@@ -647,6 +646,7 @@ main:has(#tag-personal:checked) .post[data-tags~="personal"] {
         padding: 56px 24px 24px;
         min-height: 100vh;
         font-size: 1rem;
+        align-items: flex-start;
     }
 
     /* Uncenter the welcome post section on mobile */
