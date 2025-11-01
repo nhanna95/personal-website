@@ -251,6 +251,13 @@ body {
     gap: .35rem;
 }
 
+/* On mobile, override taglist to be inline with date */
+@media (max-width:720px) {
+    .taglist {
+        grid-column: auto;
+    }
+}
+
 .taglist li {
     padding: .15rem .5rem;
     border: 1px solid var(--rule);
@@ -626,23 +633,24 @@ main:has(#tag-personal:checked) .post[data-tags~="personal"] {
     .post {
         display: flex;
         flex-direction: column;
-        gap: 0;
     }
 
     .post-head {
-        /* Title on first line */
+        order: 1;
     }
 
     /* Put date and tags on the same line on mobile */
-    /* Both date and tags will appear inline within their natural flow */
+    /* Make them both inline so they appear side-by-side */
     .post-date {
+        order: 2;
         display: inline-block;
         margin-right: .5rem;
         margin-top: .25rem;
-        vertical-align: middle;
+        white-space: nowrap;
     }
 
     .taglist {
+        order: 2;
         display: inline-flex;
         margin-left: 0;
         margin-top: .25rem;
