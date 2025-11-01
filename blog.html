@@ -100,8 +100,19 @@ permalink: /blog.html
             
             allRows.forEach(r => {
                 // Only search tags, not title or content
-                const tags = (r.getAttribute('data-tags') || '').trim().toLowerCase();
-                const matches = !term || tags.includes(term);
+                const tagsString = (r.getAttribute('data-tags') || '').trim().toLowerCase();
+                let matches = false;
+                
+                if (!term) {
+                    matches = true;
+                } else {
+                    // Tags are stored as space-separated, but multi-word tags need special handling
+                    // Check if search term matches any tag (full or partial)
+                    // Split by spaces but preserve multi-word tags
+                    const allTags = tagsString.split(/\s+/);
+                    // Also check the full tags string for multi-word matches
+                    matches = tagsString.includes(term) || allTags.some(tag => tag.includes(term) || term.includes(tag));
+                }
                 
                 // Show/hide the post - preserve original display style
                 if (matches) {
