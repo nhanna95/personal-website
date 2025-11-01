@@ -37,8 +37,6 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
-  - posts/
-  - search.html
 
 # Plugins for GitHub Pages (github-pages gem handles the plugin list)
 plugins: []

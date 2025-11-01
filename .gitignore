@@ -6,6 +6,4 @@ _site/
 vendor/bundle/
 vendor/cache/
 Gemfile.lock
-search.html
-posts/
 
