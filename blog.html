@@ -99,14 +99,9 @@ permalink: /blog.html
             }
             
             allRows.forEach(r => {
-                const titleEl = r.querySelector('.post-title');
-                const title = titleEl ? (titleEl.textContent || titleEl.innerText || '').trim() : '';
-                const tags = (r.getAttribute('data-tags') || '').trim();
-                const content = (r.getAttribute('data-content') || '').trim();
-                
-                // Build searchable text
-                const hay = (title + ' ' + tags + ' ' + content).toLowerCase().replace(/\s+/g, ' ');
-                const matches = hay.includes(term);
+                // Only search tags, not title or content
+                const tags = (r.getAttribute('data-tags') || '').trim().toLowerCase();
+                const matches = !term || tags.includes(term);
                 
                 // Show/hide the post - preserve original display style
                 if (matches) {
