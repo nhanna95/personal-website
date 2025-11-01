@@ -646,15 +646,15 @@ main:has(#tag-personal:checked) .post[data-tags~="personal"] {
         padding: 56px 24px 24px;
         min-height: 100vh;
         font-size: 1rem;
+        align-items: stretch;
     }
 
-    /* Uncenter welcome post on mobile by breaking out of parent centering */
+    /* Uncenter welcome post on mobile - override parent alignment */
     #welcome-post {
-        margin-left: calc((100vw - 100%) / -2) !important;
-        padding-left: 24px;
-        padding-right: 24px;
-        width: 100vw !important;
-        max-width: 100vw !important;
+        align-self: stretch;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .content>* {

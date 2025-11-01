@@ -26,23 +26,14 @@ permalink: /blog.html
 </section>
 
 <script>
-    // Menu toggle handler - use DOMContentLoaded to ensure elements exist
-    document.addEventListener('DOMContentLoaded', function() {
-        const toggle = document.getElementById('menu-toggle');
-        const sidebar = document.querySelector('.sidebar');
-        if (!toggle || !sidebar) return;
-        toggle.addEventListener('click', function () {
-            const open = sidebar.classList.toggle('is-menu-open');
-            toggle.setAttribute('aria-expanded', String(open));
-            document.body.style.overflow = open ? 'hidden' : '';
-        });
-    });
+    // Menu toggle - remove duplicate since default layout handles it
 
     // Client-side search on blog list (searches titles, tags, and content)
     (function () {
         const q = document.getElementById('q');
         const list = document.getElementById('post-list');
-        if (!q || !list) return;
+        const welcome = document.getElementById('welcome-post');
+        if (!q) return;
         
         // Store content for each post
         const postContentCache = new Map();
@@ -71,21 +62,33 @@ permalink: /blog.html
         
         function filter() {
             const term = q.value.trim().toLowerCase();
-            // Search both welcome post and regular posts
-            const welcome = document.getElementById('welcome-post');
-            const allRows = [...list.querySelectorAll('.post')];
+            // Collect all posts from both sections
+            const allRows = [];
+            if (list) {
+                allRows.push(...list.querySelectorAll('.post'));
+            }
             if (welcome) {
                 allRows.push(...welcome.querySelectorAll('.post'));
             }
+            
             allRows.forEach(r => {
-                const title = r.querySelector('.post-title')?.textContent || '';
+                const titleEl = r.querySelector('.post-title');
+                const title = titleEl ? titleEl.textContent : '';
                 const tags = r.getAttribute('data-tags') || '';
                 const content = r.getAttribute('data-content') || '';
                 const hay = (title + ' ' + tags + ' ' + content).toLowerCase();
-                // Use the post's current display style (grid or flex) instead of hardcoding
-                const currentDisplay = window.getComputedStyle(r).display;
-                const displayValue = currentDisplay === 'flex' ? 'flex' : 'grid';
-                r.style.display = term === '' || hay.includes(term) ? displayValue : 'none';
+                const matches = term === '' || hay.includes(term);
+                
+                // Show/hide the post and its parent section if needed
+                if (matches) {
+                    r.style.display = '';
+                    // Show parent sections
+                    if (r.closest('#welcome-post')) {
+                        r.closest('#welcome-post').style.display = '';
+                    }
+                } else {
+                    r.style.display = 'none';
+                }
             });
         }
         
