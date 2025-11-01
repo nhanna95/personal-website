@@ -62,13 +62,17 @@ permalink: /blog.html
         
         function filter() {
             const term = q.value.trim().toLowerCase();
+            // Re-query posts each time since they're dynamically rendered
+            const listEl = document.getElementById('post-list');
+            const welcomeEl = document.getElementById('welcome-post');
+            
             // Collect all posts from both sections
             const allRows = [];
-            if (list) {
-                allRows.push(...list.querySelectorAll('.post'));
+            if (listEl) {
+                allRows.push(...listEl.querySelectorAll('.post'));
             }
-            if (welcome) {
-                allRows.push(...welcome.querySelectorAll('.post'));
+            if (welcomeEl) {
+                allRows.push(...welcomeEl.querySelectorAll('.post'));
             }
             
             allRows.forEach(r => {
@@ -79,13 +83,9 @@ permalink: /blog.html
                 const hay = (title + ' ' + tags + ' ' + content).toLowerCase();
                 const matches = term === '' || hay.includes(term);
                 
-                // Show/hide the post and its parent section if needed
+                // Show/hide the post
                 if (matches) {
                     r.style.display = '';
-                    // Show parent sections
-                    if (r.closest('#welcome-post')) {
-                        r.closest('#welcome-post').style.display = '';
-                    }
                 } else {
                     r.style.display = 'none';
                 }
