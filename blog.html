@@ -168,10 +168,7 @@ permalink: /blog.html
             const dateHTML = `<time class="post-date" datetime="${p.date}">${fmt.format(d)}</time>`;
             const readHTML = `<span class="post-readtime" aria-label="Estimated read time"></span>`;
             const tagsHTML = p.tags && p.tags.length ? 
-                `<ul class="taglist">${p.tags.map(t => {
-                    const normalized = t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-                    return `<li><a href="#tag-${normalized}" class="tag-link" data-tag="${t}">${t}</a></li>`;
-                }).join('')}</ul>` : '';
+                `<ul class="taglist">${p.tags.map(t => `<li>${t}</li>`).join('')}</ul>` : '';
             art.innerHTML = `
                 <div class="post-head"><a class="post-title" href="${p.url}">${p.title}</a>${readHTML}</div>
                 ${dateHTML}
