@@ -2,7 +2,7 @@
 title: Nixon Hanna
 description: Personal website and blog
 url: https://nhanna95.github.io
-baseurl: ""  # Set to /repo-name if deploying to subdirectory
+baseurl: "/personal-website"  # Set to /repo-name if deploying to subdirectory
 
 # Build settings
 markdown: kramdown
