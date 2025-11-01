@@ -167,10 +167,15 @@ permalink: /blog.html
             art.setAttribute('data-tags', (p.tags || []).map(t => t.toLowerCase()).join(' '));
             const dateHTML = `<time class="post-date" datetime="${p.date}">${fmt.format(d)}</time>`;
             const readHTML = `<span class="post-readtime" aria-label="Estimated read time"></span>`;
+            const tagsHTML = p.tags && p.tags.length ? 
+                `<ul class="taglist">${p.tags.map(t => {
+                    const normalized = t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                    return `<li><a href="#tag-${normalized}" class="tag-link" data-tag="${t}">${t}</a></li>`;
+                }).join('')}</ul>` : '';
             art.innerHTML = `
                 <div class="post-head"><a class="post-title" href="${p.url}">${p.title}</a>${readHTML}</div>
                 ${dateHTML}
-                ${p.tags && p.tags.length ? `<ul class="taglist">${p.tags.map(t => `<li>${t}</li>`).join('')}</ul>` : ''}
+                ${tagsHTML}
             `;
             list.appendChild(art);
 
@@ -215,9 +220,8 @@ permalink: /blog.html
         });
         applyFilter();
 
-        // Check for tag filter in URL hash and auto-select it
-        // Wait a bit for filters to be fully rendered
-        setTimeout(function() {
+        // Function to select tag from hash
+        function selectTagFromHash() {
             const hash = window.location.hash;
             if (hash && hash.startsWith('#tag-')) {
                 const tagId = hash.substring(1); // Remove the #
@@ -232,12 +236,47 @@ permalink: /blog.html
                             filterEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                         }
                     }, 100);
-                } else {
-                    // If checkbox not found, try checking hashchange after a delay
-                    console.log('Tag filter not found:', tagId);
+                    return true;
                 }
             }
-        }, 50);
+            return false;
+        }
+
+        // Check for tag filter in URL hash and auto-select it
+        // Wait a bit for filters to be fully rendered
+        setTimeout(selectTagFromHash, 100);
+
+        // Handle hash changes
+        window.addEventListener('hashchange', function() {
+            // Uncheck all first
+            filters.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            applyFilter();
+            // Then select new tag
+            setTimeout(selectTagFromHash, 50);
+        });
+
+        // Handle clicks on tag links (both in post pages and blog listing)
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('tag-link')) {
+                const href = e.target.getAttribute('href');
+                if (href && href.startsWith('#tag-')) {
+                    e.preventDefault();
+                    const tagId = href.substring(1);
+                    const checkbox = document.getElementById(tagId);
+                    if (checkbox) {
+                        checkbox.checked = true;
+                        applyFilter();
+                        window.location.hash = tagId;
+                        setTimeout(() => {
+                            const filterEl = document.getElementById('filters');
+                            if (filterEl) {
+                                filterEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                            }
+                        }, 100);
+                    }
+                }
+            }
+        });
     })();
 </script>
 
