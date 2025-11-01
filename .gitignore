@@ -6,12 +6,6 @@ _site/
 vendor/bundle/
 vendor/cache/
 Gemfile.lock
-
-# Old HTML files (can be deleted after verification)
-about.html
-blog.html
-contact.html
-index.html
 search.html
 posts/
 
