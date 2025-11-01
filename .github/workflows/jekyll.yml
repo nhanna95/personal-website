@@ -52,7 +52,20 @@ jobs:
           fi
           echo ""
           echo "=== Checking CSS file ==="
-          ls -la _site/styles.css || echo "ERROR: styles.css not found"
+          if [ -f _site/styles.css ]; then
+            echo "styles.css exists:"
+            ls -lh _site/styles.css
+            echo "First 20 lines of CSS:"
+            head -20 _site/styles.css
+          else
+            echo "ERROR: styles.css not found in _site/"
+          fi
+          echo ""
+          echo "=== Checking all CSS/JS/image files ==="
+          find _site -type f \( -name "*.css" -o -name "*.js" -o -name "*.jpg" -o -name "*.png" \) | head -10
+          echo ""
+          echo "=== Checking baseurl in built HTML ==="
+          grep -o 'href="[^"]*styles.css[^"]*"' _site/index.html || echo "No styles.css link found"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
