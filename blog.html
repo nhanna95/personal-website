@@ -214,6 +214,26 @@ permalink: /blog.html
             setTimeout(applyFilter, 0);
         });
         applyFilter();
+
+        // Check for tag filter in URL hash and auto-select it
+        (function() {
+            const hash = window.location.hash;
+            if (hash && hash.startsWith('#tag-')) {
+                const tagId = hash.substring(1); // Remove the #
+                const checkbox = document.getElementById(tagId);
+                if (checkbox) {
+                    checkbox.checked = true;
+                    applyFilter();
+                    // Scroll to filters section
+                    setTimeout(() => {
+                        const filterEl = document.getElementById('filters');
+                        if (filterEl) {
+                            filterEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                    }, 100);
+                }
+            }
+        })();
     })();
 </script>
 

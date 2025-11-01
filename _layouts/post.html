@@ -42,7 +42,8 @@
                     {% if page.tags.size > 0 %}
                     <ul class="taglist">
                         {% for tag in page.tags %}
-                        <li>{{ tag }}</li>
+                        {% assign tag_normalized = tag | downcase | replace: ' ', '-' %}
+                        <li><a href="{{ '/blog.html' | relative_url }}#tag-{{ tag_normalized }}" class="tag-link">{{ tag }}</a></li>
                         {% endfor %}
                     </ul>
                     {% endif %}
