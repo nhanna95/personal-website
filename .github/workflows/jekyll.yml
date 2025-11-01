@@ -31,8 +31,16 @@ jobs:
         run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
+      - name: Debug - List build output
+        run: |
+          echo "Checking _site directory:"
+          ls -la _site/ | head -20
+          echo "Checking index.html:"
+          head -30 _site/index.html || echo "index.html not found in _site"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
 
   deploy:
     environment:
