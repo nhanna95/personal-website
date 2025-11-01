@@ -62,6 +62,23 @@ permalink: /blog.html
         
         function filter() {
             const term = q.value.trim().toLowerCase();
+            if (!term) {
+                // If no search term, show all posts
+                const listEl = document.getElementById('post-list');
+                const welcomeEl = document.getElementById('welcome-post');
+                const allRows = [];
+                if (listEl) {
+                    allRows.push(...listEl.querySelectorAll('.post'));
+                }
+                if (welcomeEl) {
+                    allRows.push(...welcomeEl.querySelectorAll('.post'));
+                }
+                allRows.forEach(r => {
+                    r.style.removeProperty('display');
+                });
+                return;
+            }
+            
             // Re-query posts each time since they're dynamically rendered
             const listEl = document.getElementById('post-list');
             const welcomeEl = document.getElementById('welcome-post');
@@ -75,20 +92,42 @@ permalink: /blog.html
                 allRows.push(...welcomeEl.querySelectorAll('.post'));
             }
             
+            // Also show/hide year headers based on whether any posts in that year match
+            const yearHeaders = [];
+            if (listEl) {
+                yearHeaders.push(...listEl.querySelectorAll('.year'));
+            }
+            
             allRows.forEach(r => {
                 const titleEl = r.querySelector('.post-title');
-                const title = titleEl ? titleEl.textContent : '';
-                const tags = r.getAttribute('data-tags') || '';
-                const content = r.getAttribute('data-content') || '';
-                const hay = (title + ' ' + tags + ' ' + content).toLowerCase();
-                const matches = term === '' || hay.includes(term);
+                const title = titleEl ? (titleEl.textContent || titleEl.innerText || '').trim() : '';
+                const tags = (r.getAttribute('data-tags') || '').trim();
+                const content = (r.getAttribute('data-content') || '').trim();
                 
-                // Show/hide the post - use the CSS default (grid/flex) instead of empty string
+                // Build searchable text
+                const hay = (title + ' ' + tags + ' ' + content).toLowerCase().replace(/\s+/g, ' ');
+                const matches = hay.includes(term);
+                
+                // Show/hide the post - preserve original display style
                 if (matches) {
                     r.style.removeProperty('display');
                 } else {
                     r.style.display = 'none';
                 }
+            });
+            
+            // Show/hide year headers if all their posts are hidden
+            yearHeaders.forEach(yearHeader => {
+                let hasVisiblePost = false;
+                let currentEl = yearHeader.nextElementSibling;
+                while (currentEl && !currentEl.classList.contains('year')) {
+                    if (currentEl.classList.contains('post') && currentEl.style.display !== 'none') {
+                        hasVisiblePost = true;
+                        break;
+                    }
+                    currentEl = currentEl.nextElementSibling;
+                }
+                yearHeader.style.display = hasVisiblePost ? '' : 'none';
             });
         }
         
