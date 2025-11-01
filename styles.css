@@ -624,16 +624,19 @@ main:has(#tag-personal:checked) .post[data-tags~="personal"] {
     }
 
     .post {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
     }
 
     .post-head {
-        grid-row: 1;
+        /* Title on first line */
     }
 
     /* Put date and tags on the same line on mobile */
+    /* Both date and tags will appear inline within their natural flow */
     .post-date {
-        display: inline;
+        display: inline-block;
         margin-right: .5rem;
         margin-top: .25rem;
         vertical-align: middle;
