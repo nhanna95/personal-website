@@ -230,6 +230,11 @@ body {
     white-space: nowrap;
 }
 
+.post-updated {
+    color: var(--muted);
+    font-size: 0.9em;
+}
+
 .post-readtime {
     color: var(--muted);
     white-space: nowrap;
@@ -265,6 +270,18 @@ body {
     flex-wrap: wrap;
     gap: .5rem 1rem;
     align-items: center;
+    color: var(--muted);
+}
+
+.entry-dates {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    align-items: center;
+}
+
+.entry-updated {
+    font-size: 0.9em;
     color: var(--muted);
 }
 

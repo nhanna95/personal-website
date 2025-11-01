@@ -61,6 +61,7 @@ permalink: /blog.html
                 title: {{ post.title | jsonify }},
                 url: "{{ post.url | relative_url }}",
                 date: "{{ post.date | date: '%Y-%m-%d' }}",
+                {% if post.updated %}updated: "{{ post.updated | date: '%Y-%m-%d' }}",{% endif %}
                 tags: {{ post.tags | jsonify }}
             }{% unless forloop.last %},{% endunless %}
             {% endfor %}
@@ -123,9 +124,14 @@ permalink: /blog.html
             const wfmt = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
             const wformatted = wfmt.format(wd);
             const wdateHTML = `<time class="post-date" datetime="${welcomePost.date}">${wformatted}</time>`;
+            let wupdatedHTML = '';
+            if (welcomePost.updated) {
+                const wupdatedDate = new Date(welcomePost.updated);
+                wupdatedHTML = ` <span class="post-updated">Updated ${wfmt.format(wupdatedDate)}</span>`;
+            }
             art.innerHTML = `
                 <div class="post-head"><a class="post-title" href="${welcomePost.url}">${welcomePost.title}</a><span class="post-readtime" aria-label="Estimated read time"></span></div>
-                ${wdateHTML}
+                ${wdateHTML}${wupdatedHTML}
             `;
             welcome.appendChild(art);
 
@@ -165,10 +171,16 @@ permalink: /blog.html
             art.className = 'post';
             art.setAttribute('data-tags', (p.tags || []).map(t => t.toLowerCase()).join(' '));
             const dateHTML = `<time class="post-date" datetime="${p.date}">${fmt.format(d)}</time>`;
+            let updatedHTML = '';
+            if (p.updated) {
+                const updatedDate = new Date(p.updated);
+                const updatedFmt = new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+                updatedHTML = ` <span class="post-updated">Updated ${updatedFmt.format(updatedDate)}</span>`;
+            }
             const readHTML = `<span class="post-readtime" aria-label="Estimated read time"></span>`;
             art.innerHTML = `
                 <div class="post-head"><a class="post-title" href="${p.url}">${p.title}</a>${readHTML}</div>
-                ${dateHTML}
+                ${dateHTML}${updatedHTML}
                 ${p.tags && p.tags.length ? `<ul class="taglist">${p.tags.map(t => `<li>${t}</li>`).join('')}</ul>` : ''}
             `;
             list.appendChild(art);
