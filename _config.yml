@@ -1,0 +1,51 @@
+# Site settings
+title: Nixon Hanna
+description: Personal website and blog
+url: https://nhanna95.github.io
+baseurl: ""  # Set to /repo-name if deploying to subdirectory
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /:collection/:title/
+  pages:
+    output: true
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: "_pages"
+      type: "pages"
+    values:
+      layout: "page"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - about.html
+  - blog.html
+  - contact.html
+  - index.html
+  - search.html
+  - posts/
+
+# Plugins for GitHub Pages (github-pages gem handles the plugin list)
+plugins: []
+
