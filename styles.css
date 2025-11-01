@@ -252,18 +252,21 @@ body {
 }
 
 .taglist li {
-    padding: .15rem .5rem;
+    padding: 0;
     border: 1px solid var(--rule);
     border-radius: 999px;
     font-size: .8rem;
-    color: #333;
     background: #fff;
+    position: relative;
 }
 
 .taglist li .tag-link {
-    color: inherit;
+    display: block;
+    padding: .15rem .5rem;
+    color: #333;
     text-decoration: none;
-    display: inline;
+    width: 100%;
+    height: 100%;
 }
 
 .taglist li .tag-link:hover {

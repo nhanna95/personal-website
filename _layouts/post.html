@@ -42,10 +42,21 @@
                     {% if page.tags.size > 0 %}
                     <ul class="taglist">
                         {% for tag in page.tags %}
-                        {% assign tag_normalized = tag | downcase | replace: ' ', '-' %}
-                        <li><a href="{{ '/blog.html' | relative_url }}#tag-{{ tag_normalized }}" class="tag-link">{{ tag }}</a></li>
+                        <li><a href="{{ '/blog.html' | relative_url }}#tag-{{ tag | downcase }}" class="tag-link" data-tag="{{ tag }}">{{ tag }}</a></li>
                         {% endfor %}
                     </ul>
+                    <script>
+                        // Normalize tag links to match JavaScript regex: /[^a-z0-9]+/g -> '-'
+                        (function() {
+                            const tagLinks = document.querySelectorAll('.tag-link[data-tag]');
+                            tagLinks.forEach(link => {
+                                const tag = link.getAttribute('data-tag');
+                                const normalized = tag.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                                const href = link.getAttribute('href').split('#')[0] + '#tag-' + normalized;
+                                link.setAttribute('href', href);
+                            });
+                        })();
+                    </script>
                     {% endif %}
                 </div>
             </header>

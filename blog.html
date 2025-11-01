@@ -216,7 +216,8 @@ permalink: /blog.html
         applyFilter();
 
         // Check for tag filter in URL hash and auto-select it
-        (function() {
+        // Wait a bit for filters to be fully rendered
+        setTimeout(function() {
             const hash = window.location.hash;
             if (hash && hash.startsWith('#tag-')) {
                 const tagId = hash.substring(1); // Remove the #
@@ -231,9 +232,12 @@ permalink: /blog.html
                             filterEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                         }
                     }, 100);
+                } else {
+                    // If checkbox not found, try checking hashchange after a delay
+                    console.log('Tag filter not found:', tagId);
                 }
             }
-        })();
+        }, 50);
     })();
 </script>
 
