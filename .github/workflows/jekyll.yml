@@ -66,6 +66,10 @@ jobs:
           echo ""
           echo "=== Checking baseurl in built HTML ==="
           grep -o 'href="[^"]*styles.css[^"]*"' _site/index.html || echo "No styles.css link found"
+          grep -o 'src="[^"]*headshot.jpg[^"]*"' _site/index.html | head -2 || echo "No headshot.jpg found"
+          echo ""
+          echo "=== Full head section of index.html ==="
+          sed -n '/<head>/,/<\/head>/p' _site/index.html | head -15
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
