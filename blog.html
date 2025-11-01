@@ -82,7 +82,10 @@ permalink: /blog.html
                 const tags = r.getAttribute('data-tags') || '';
                 const content = r.getAttribute('data-content') || '';
                 const hay = (title + ' ' + tags + ' ' + content).toLowerCase();
-                r.style.display = term === '' || hay.includes(term) ? 'grid' : 'none';
+                // Use the post's current display style (grid or flex) instead of hardcoding
+                const currentDisplay = window.getComputedStyle(r).display;
+                const displayValue = currentDisplay === 'flex' ? 'flex' : 'grid';
+                r.style.display = term === '' || hay.includes(term) ? displayValue : 'none';
             });
         }
         
