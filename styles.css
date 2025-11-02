@@ -204,6 +204,12 @@ body {
     gap: .5rem 1rem;
     padding: .65rem 0;
     border-top: 1px solid var(--rule);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.post:hover {
+    background-color: rgba(0, 0, 0, 0.02);
 }
 
 .post-head {
