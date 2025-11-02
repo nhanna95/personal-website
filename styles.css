@@ -668,8 +668,15 @@ main:has(#tag-personal:checked) .post[data-tags~="personal"] {
     }
 
     .post {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: start;
+    }
+    
+    /* Ensure post content is left-aligned */
+    .post-head,
+    .post .taglist {
+        text-align: left;
     }
 
     .post-head {
