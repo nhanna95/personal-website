@@ -106,12 +106,25 @@ permalink: /blog.html
                 if (!term) {
                     matches = true;
                 } else {
-                    // Tags are stored as space-separated, but multi-word tags need special handling
-                    // Check if search term matches any tag (full or partial)
-                    // Split by spaces but preserve multi-word tags
-                    const allTags = tagsString.split(/\s+/);
-                    // Also check the full tags string for multi-word matches
-                    matches = tagsString.includes(term) || allTags.some(tag => tag.includes(term) || term.includes(tag));
+                    // Tags are stored as space-separated: "web development testing"
+                    // Need to check:
+                    // 1. If search term appears anywhere in the full tags string (handles "web development")
+                    // 2. If any individual word in search term matches any word in tags (handles "web" or "development")
+                    // 3. If search term matches complete tag boundaries
+                    
+                    // First check: does the full tags string contain the search term?
+                    if (tagsString.includes(term)) {
+                        matches = true;
+                    } else {
+                        // Second check: split search term and tags, check if any search word matches any tag word
+                        const searchWords = term.split(/\s+/).filter(w => w.length > 0);
+                        const tagWords = tagsString.split(/\s+/).filter(w => w.length > 0);
+                        
+                        // Check if any search word matches any tag word (handles partial matches)
+                        matches = searchWords.some(searchWord => 
+                            tagWords.some(tagWord => tagWord.includes(searchWord) || searchWord.includes(tagWord))
+                        );
+                    }
                 }
                 
                 // Show/hide the post - preserve original display style
