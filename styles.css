@@ -325,7 +325,8 @@ a:hover {
     gap: .5rem;
     margin: 0 0 1rem 0;
     position: relative;
-    padding-right: 80px; /* Make room for reset button */
+    padding-right: 80px;
+    /* Make room for reset button */
 }
 
 .tag-filter input {
@@ -648,7 +649,7 @@ main:has(#tag-personal:checked) .post[data-tags~="personal"] {
 
     .content {
         margin: 0;
-        padding: 56px 24px 24px;
+        padding: 39px 24px 24px; /* Reduced top padding by 30% from 56px */
         min-height: 100vh;
         font-size: 1rem;
         align-items: flex-start;
@@ -672,7 +673,7 @@ main:has(#tag-personal:checked) .post[data-tags~="personal"] {
         grid-template-columns: 1fr auto;
         align-items: start;
     }
-    
+
     /* Ensure post content is left-aligned */
     .post-head,
     .post .taglist {
