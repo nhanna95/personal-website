@@ -225,7 +225,11 @@ body {
     text-decoration: none;
 }
 
-.post-title:hover {
+.post-title:hover,
+.post-title:active,
+.post-title:focus,
+.post-title:visited {
+    color: inherit;
     text-decoration: underline;
 }
 
