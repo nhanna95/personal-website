@@ -2,7 +2,7 @@
 layout: post
 title: "This is an Extremely Long Blog Post Title Designed to Test How the Blog Page Handles Very Long Headlines That May Wrap Across Multiple Lines on Different Screen Sizes"
 date: 2025-04-01
-tags: [Testing, Long Titles]
+tags: [CSS, Design, Tutorial]
 ---
 
 This is a test post with a very long title to check how the blog listing page handles lengthy headlines. The title should wrap appropriately on different screen sizes and maintain proper formatting.

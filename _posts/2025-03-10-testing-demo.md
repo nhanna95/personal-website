@@ -2,7 +2,7 @@
 layout: post
 title: "Another testing post"
 date: 2025-03-10
-tags: [Testing, Demo]
+tags: [Demo, Tutorial]
 ---
 
 A second placeholder post for validating filters, counts, and ordering.

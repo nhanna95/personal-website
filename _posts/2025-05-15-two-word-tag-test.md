@@ -2,7 +2,7 @@
 layout: post
 title: "Testing Two-Word Tags"
 date: 2025-05-15
-tags: [Web Development, Testing]
+tags: [Web Development, Programming, CSS]
 ---
 
 This is a test post with a two-word tag "Web Development" to verify that the tag filter works correctly with multi-word tags.

@@ -3,7 +3,7 @@ layout: post
 title: "Development testing post"
 date: 2025-02-15
 updated: 2025-02-20
-tags: [Dev, Testing]
+tags: [Dev, Programming]
 ---
 
 This is a placeholder post to test blog listing, tag filters, and layout.
