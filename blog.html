@@ -62,10 +62,12 @@ permalink: /blog.html
         
         function filter() {
             const term = q.value.trim().toLowerCase();
+            const welcomeSection = document.getElementById('welcome-post');
+            const listEl = document.getElementById('post-list');
+            const welcomeEl = document.getElementById('welcome-post');
+            
             if (!term) {
-                // If no search term, show all posts
-                const listEl = document.getElementById('post-list');
-                const welcomeEl = document.getElementById('welcome-post');
+                // If no search term, show all posts and welcome section
                 const allRows = [];
                 if (listEl) {
                     allRows.push(...listEl.querySelectorAll('.post'));
@@ -76,20 +78,26 @@ permalink: /blog.html
                 allRows.forEach(r => {
                     r.style.removeProperty('display');
                 });
+                // Show welcome section
+                if (welcomeSection) {
+                    welcomeSection.style.display = '';
+                }
+                // Show all year headers
+                if (listEl) {
+                    listEl.querySelectorAll('.year').forEach(h => h.style.display = '');
+                }
                 return;
             }
             
-            // Re-query posts each time since they're dynamically rendered
-            const listEl = document.getElementById('post-list');
-            const welcomeEl = document.getElementById('welcome-post');
+            // Hide welcome section when searching
+            if (welcomeSection) {
+                welcomeSection.style.display = 'none';
+            }
             
-            // Collect all posts from both sections
+            // Collect all posts from post-list section only (exclude welcome)
             const allRows = [];
             if (listEl) {
                 allRows.push(...listEl.querySelectorAll('.post'));
-            }
-            if (welcomeEl) {
-                allRows.push(...welcomeEl.querySelectorAll('.post'));
             }
             
             // Also show/hide year headers based on whether any posts in that year match
@@ -104,9 +112,7 @@ permalink: /blog.html
                 const tagsData = r.getAttribute('data-tags');
                 let matches = false;
                 
-                if (!term) {
-                    matches = true;
-                } else if (tagsData) {
+                if (tagsData) {
                     try {
                         const tags = JSON.parse(tagsData);
                         // Check if search term matches any tag (full or partial)
@@ -335,11 +341,25 @@ permalink: /blog.html
         function applyFilter() {
             const selected = [...filters.querySelectorAll('input[type="checkbox"]:checked')]
                 .map(i => i.value);
+            const welcomeSection = document.getElementById('welcome-post');
             const rows = [...list.querySelectorAll('.post')];
+            
             if (selected.length === 0) {
+                // Reset: show all posts and welcome section
                 rows.forEach(r => r.style.display = 'grid');
+                if (welcomeSection) {
+                    welcomeSection.style.display = '';
+                }
+                // Show all year headers
+                list.querySelectorAll('.year').forEach(h => h.style.display = '');
                 return;
             }
+            
+            // Hide welcome section when filtering
+            if (welcomeSection) {
+                welcomeSection.style.display = 'none';
+            }
+            
             rows.forEach(r => {
                 // Tags are stored as JSON array, parse it
                 const tagsData = r.getAttribute('data-tags');
@@ -352,6 +372,21 @@ permalink: /blog.html
                 }
                 const show = selected.some(s => tags.includes(s.toLowerCase()));
                 r.style.display = show ? 'grid' : 'none';
+            });
+            
+            // Show/hide year headers based on whether any posts in that year are visible
+            const yearHeaders = list.querySelectorAll('.year');
+            yearHeaders.forEach(yearHeader => {
+                let hasVisiblePost = false;
+                let currentEl = yearHeader.nextElementSibling;
+                while (currentEl && !currentEl.classList.contains('year')) {
+                    if (currentEl.classList.contains('post') && currentEl.style.display !== 'none') {
+                        hasVisiblePost = true;
+                        break;
+                    }
+                    currentEl = currentEl.nextElementSibling;
+                }
+                yearHeader.style.display = hasVisiblePost ? '' : 'none';
             });
         }
 
