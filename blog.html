@@ -253,6 +253,8 @@ permalink: /blog.html
 
             const art = document.createElement('article');
             art.className = 'post';
+            // Store tags as JSON array for proper multi-word tag handling
+            art.setAttribute('data-tags', JSON.stringify((welcomePost.tags || []).map(t => t.toLowerCase())));
             const wd = new Date(welcomePost.date);
             const wfmt = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
             const wformatted = wfmt.format(wd);
