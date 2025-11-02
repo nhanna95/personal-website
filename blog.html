@@ -12,18 +12,18 @@ permalink: /blog.html
             <input id="q" type="search" placeholder="Search posts" autocomplete="off" />
         </form>
     </div>
-        </div>
+</div>
 
-        <!-- Tag Filter Bar (UNION) -->
-        <form id="filters" class="tag-filter" aria-label="Filter posts by tag">
+<!-- Tag Filter Bar (UNION) -->
+<form id="filters" class="tag-filter" aria-label="Filter posts by tag">
     <!-- Tags will be injected dynamically -->
-            <button type="reset" class="tag reset">Reset</button>
-        </form>
+    <button type="reset" class="tag reset">Reset</button>
+</form>
 
 <section class="post-list" id="welcome-post"></section>
 <section class="post-list" id="post-list">
     <!-- Posts will be injected from Jekyll collections -->
-        </section>
+</section>
 
 <script>
     // Menu toggle - remove duplicate since default layout handles it
@@ -199,13 +199,13 @@ permalink: /blog.html
         const posts = [
             {% for post in site.posts %}
             {
-        title: { { post.title | jsonify } },
-        url: "{{ post.url | relative_url }}",
-            date: "{{ post.date | date: '%Y-%m-%d' }}",
-                {% if post.updated %} updated: "{{ post.updated | date: '%Y-%m-%d' }}", {% endif %}
-    tags: { { post.tags | jsonify } }
-            }{% unless forloop.last %}, {% endunless %}
-    {% endfor %}
+                title: {{ post.title | jsonify }},
+                url: "{{ post.url | relative_url }}",
+                date: "{{ post.date | date: '%Y-%m-%d' }}",
+                {% if post.updated %}updated: "{{ post.updated | date: '%Y-%m-%d' }}",{% endif %}
+                tags: {{ post.tags | jsonify }}
+            }{% unless forloop.last %},{% endunless %}
+            {% endfor %}
         ];
     // jshint ignore:end
 
@@ -268,20 +268,20 @@ permalink: /blog.html
         const wfmt = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
         const wformatted = wfmt.format(wd);
         const wdateHTML = `<time class="post-date" datetime="${welcomePost.date}">${wformatted}</time>`;
-            art.innerHTML = `
+        art.innerHTML = `
                 <div class="post-head"><a class="post-title" href="${welcomePost.url}">${welcomePost.title}</a><span class="post-readtime" aria-label="Estimated read time"></span></div>
                 ${wdateHTML}
             `;
-            // Make entire post clickable
-            art.style.cursor = 'pointer';
-            art.addEventListener('click', function(e) {
-                // Don't navigate if clicking on a link or button
-                if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) {
-                    return;
-                }
-                window.location.href = welcomePost.url;
-            });
-            welcome.appendChild(art);
+        // Make entire post clickable
+        art.style.cursor = 'pointer';
+        art.addEventListener('click', function (e) {
+            // Don't navigate if clicking on a link or button
+            if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) {
+                return;
+            }
+            window.location.href = welcomePost.url;
+        });
+        welcome.appendChild(art);
 
         // Compute read time for welcome post
         (async () => {
@@ -330,7 +330,7 @@ permalink: /blog.html
         `;
         // Make entire post clickable
         art.style.cursor = 'pointer';
-        art.addEventListener('click', function(e) {
+        art.addEventListener('click', function (e) {
             // Don't navigate if clicking on a link or button
             if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) {
                 return;
