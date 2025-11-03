@@ -35,19 +35,17 @@ bundle exec jekyll serve
 
 ## Adding New Blog Posts
 
-1. Create a new Markdown file in `_posts/`
-2. Use the filename format: `YYYY-MM-DD-slug.md`
-3. Add front matter:
-```yaml
----
-layout: post
-title: "Your Post Title"
-date: 2025-01-01
-tags: [Tag1, Tag2]
----
-```
+See **[BLOG_POSTS.md](BLOG_POSTS.md)** for a comprehensive guide on creating blog posts, including:
+- Step-by-step instructions
+- Front matter configuration (required and optional fields)
+- Complete Markdown syntax reference with examples
+- Tips and best practices
+- Troubleshooting common issues
 
-4. Write your content in Markdown below the front matter
+Quick start:
+1. Create a new Markdown file in `_posts/` with format: `YYYY-MM-DD-slug.md`
+2. Add front matter with `layout: post`, `title`, `date`, and optional `tags` and `updated`
+3. Write your content in Markdown below the front matter
 
 ## Deploying to GitHub Pages
 
