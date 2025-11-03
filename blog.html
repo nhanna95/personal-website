@@ -112,14 +112,14 @@ permalink: /blog.html
                 const title = titleEl ? (titleEl.textContent || titleEl.innerText || '').trim() : '';
                 const tagsData = r.getAttribute('data-tags');
                 const content = (r.getAttribute('data-content') || '').trim();
-                
+
                 let matches = false;
-                
+
                 // Check title
                 if (title.toLowerCase().includes(term)) {
                     matches = true;
                 }
-                
+
                 // Check tags
                 if (!matches && tagsData) {
                     try {
@@ -138,7 +138,7 @@ permalink: /blog.html
                         matches = tagsString.includes(term);
                     }
                 }
-                
+
                 // Check content
                 if (!matches && content) {
                     if (content.toLowerCase().includes(term)) {

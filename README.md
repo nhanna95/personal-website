@@ -6,10 +6,11 @@ A Jekyll-powered personal website hosted on GitHub Pages.
 
 - `_config.yml` - Jekyll configuration
 - `_layouts/` - Page layouts (default, post, page)
-- `_pages/` - Static pages (index, about, contact, blog)
 - `_posts/` - Blog posts in Markdown format
+- `index.html`, `about.html`, `contact.html`, `blog.html` - Main pages
 - `styles.css` - Site stylesheet
 - `headshot.jpg`, `monogram.png` - Assets
+- `CNAME` - Custom domain configuration
 
 ## Local Development
 
@@ -56,7 +57,7 @@ This repository is configured for automatic deployment via GitHub Actions:
 2. GitHub Actions will build and deploy your site
 3. Your site will be available at `https://yourusername.github.io/repo-name`
 
-**Note**: Update the `url` in `_config.yml` to match your GitHub Pages URL.
+**Note**: This site uses a custom domain (`nixonhanna.com`). The `url` and `baseurl` in `_config.yml` are configured accordingly.
 
 ## Features
 
@@ -76,7 +77,7 @@ Edit CSS variables in `styles.css`:
 - Other design tokens
 
 ### Adding Pages
-Create new files in `_pages/` with front matter:
+Create new HTML files in the root directory with front matter:
 ```yaml
 ---
 layout: page
