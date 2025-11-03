@@ -107,24 +107,42 @@ permalink: /blog.html
             }
 
             allRows.forEach(r => {
-                // Only search tags, not title or content
-                // Tags are stored as JSON array: ["web development", "testing"]
+                // Search tags, title, and content
+                const titleEl = r.querySelector('.post-title');
+                const title = titleEl ? (titleEl.textContent || titleEl.innerText || '').trim() : '';
                 const tagsData = r.getAttribute('data-tags');
+                const content = (r.getAttribute('data-content') || '').trim();
+                
                 let matches = false;
-
-                if (tagsData) {
+                
+                // Check title
+                if (title.toLowerCase().includes(term)) {
+                    matches = true;
+                }
+                
+                // Check tags
+                if (!matches && tagsData) {
                     try {
                         const tags = JSON.parse(tagsData);
                         // Check if search term matches any tag (full or partial)
                         matches = tags.some(tag => {
+                            // Lowercase tag for comparison
+                            const tagLower = tag.toLowerCase();
                             // Check if search term is in tag (handles "web" matching "web development")
                             // or if tag is in search term (handles "web development" matching "web development")
-                            return tag.includes(term) || term.includes(tag);
+                            return tagLower.includes(term) || term.includes(tagLower);
                         });
                     } catch (e) {
                         // Fallback for old format if any exist
                         const tagsString = tagsData.toLowerCase();
                         matches = tagsString.includes(term);
+                    }
+                }
+                
+                // Check content
+                if (!matches && content) {
+                    if (content.toLowerCase().includes(term)) {
+                        matches = true;
                     }
                 }
 
