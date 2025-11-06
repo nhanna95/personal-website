@@ -61,6 +61,12 @@
                 </div>
             </header>
 
+            {% if page.substack %}
+            <div class="substack-link">
+                <p>This post is also available on <a href="{{ page.substack }}" target="_blank" rel="noopener noreferrer">Substack</a>.</p>
+            </div>
+            {% endif %}
+
             {{ content }}
 
             <hr class="rule">

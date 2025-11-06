@@ -42,6 +42,10 @@ tags: [Tag1, Tag2]
   - Use multi-word tags with spaces (e.g., "Web Development")
   - Tags are case-sensitive but will be matched case-insensitively in search
   - Tags appear as clickable buttons on the post page that link to filtered blog listings
+- **`substack`** - URL to the Substack version of the post (displays a notice at the top of the post)
+  ```yaml
+  substack: https://substack.com/@username/post-slug
+  ```
 
 ### Example Front Matter
 
@@ -52,6 +56,7 @@ title: "My First Blog Post"
 date: 2025-03-15
 updated: 2025-03-20
 tags: [Introduction, Personal]
+substack: https://substack.com/@username/post-slug
 ---
 ```
 
