@@ -286,8 +286,18 @@ permalink: /blog.html
     filters.appendChild(reset);
 
     // Pull out the welcome post and render it separately
-    const welcomePost = posts.find(p => p.url.includes('welcome'));
-    const regularPosts = posts.filter(p => !p.url.includes('welcome'));
+    // Check both URL and title for "welcome" to be more robust
+    const welcomePost = posts.find(p => 
+        p.url.includes('welcome') || 
+        (p.title && p.title.toLowerCase().includes('welcome'))
+    );
+    const regularPosts = posts.filter(p => 
+        !p.url.includes('welcome') && 
+        !(p.title && p.title.toLowerCase().includes('welcome'))
+    );
+    
+    console.log('Welcome post found:', welcomePost);
+    console.log('Regular posts count:', regularPosts.length);
 
     if (welcomePost) {
         const h2 = document.createElement('h2');
