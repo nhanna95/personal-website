@@ -249,6 +249,19 @@ permalink: /blog.html
 
     // Debug: log posts array
     console.log('Posts array:', posts);
+    console.log('Posts array length:', posts.length);
+
+    // Handle empty posts array
+    if (!posts || posts.length === 0) {
+        console.warn('No posts found!');
+        const messageEl = document.createElement('p');
+        messageEl.style.color = 'var(--muted)';
+        messageEl.style.marginTop = '2rem';
+        messageEl.style.fontSize = '1rem';
+        messageEl.textContent = 'Stay tuned! More posts are coming soon.';
+        list.appendChild(messageEl);
+        return;
+    }
 
     // Aggregate tag counts (exclude empty strings)
     const tagToCount = new Map();
