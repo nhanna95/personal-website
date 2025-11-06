@@ -86,12 +86,23 @@ permalink: /blog.html
                 if (listEl) {
                     listEl.querySelectorAll('.year').forEach(h => h.style.display = '');
                 }
+                // Show coming soon message if no posts
+                const comingSoonMsg = listEl?.querySelector('#coming-soon-message');
+                if (comingSoonMsg && listEl.querySelectorAll('.post').length === 0) {
+                    comingSoonMsg.style.display = '';
+                }
                 return;
             }
 
             // Hide welcome section when searching
             if (welcomeSection) {
                 welcomeSection.style.display = 'none';
+            }
+
+            // Hide coming soon message when searching
+            const comingSoonMsg = listEl?.querySelector('#coming-soon-message');
+            if (comingSoonMsg) {
+                comingSoonMsg.style.display = 'none';
             }
 
             // Collect all posts from post-list section only (exclude welcome)
@@ -321,6 +332,17 @@ permalink: /blog.html
         })();
     }
 
+    // Show message if no regular posts yet
+    if (regularPosts.length === 0) {
+        const messageEl = document.createElement('p');
+        messageEl.id = 'coming-soon-message';
+        messageEl.style.color = 'var(--muted)';
+        messageEl.style.marginTop = '2rem';
+        messageEl.style.fontSize = '1rem';
+        messageEl.textContent = 'Stay tuned! More posts are coming soon.';
+        list.appendChild(messageEl);
+    }
+
     let currentYear = null;
     const fmt = new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric' });
     regularPosts.forEach(p => {
@@ -391,12 +413,23 @@ permalink: /blog.html
             }
             // Show all year headers
             list.querySelectorAll('.year').forEach(h => h.style.display = '');
+            // Show coming soon message if no posts
+            const comingSoonMsg = list.querySelector('#coming-soon-message');
+            if (comingSoonMsg && rows.length === 0) {
+                comingSoonMsg.style.display = '';
+            }
             return;
         }
 
         // Hide welcome section when filtering
         if (welcomeSection) {
             welcomeSection.style.display = 'none';
+        }
+
+        // Hide coming soon message when filtering
+        const comingSoonMsg = list.querySelector('#coming-soon-message');
+        if (comingSoonMsg) {
+            comingSoonMsg.style.display = 'none';
         }
 
         rows.forEach(r => {
