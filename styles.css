@@ -438,8 +438,7 @@ a:hover {
     /* Make room for reset button */
 }
 
-.tag-filter input,
-.tag-filter label.tag:not(.reset) {
+.tag-filter input + label.tag:not(.reset) {
     display: inline-block;
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
