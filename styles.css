@@ -22,6 +22,10 @@
     --sidebar-bg: #1f1f1f;
 }
 
+[data-theme="dark"] .tagline {
+    color: #6db85a;
+}
+
 
 [data-theme="dark"] .post:hover {
     background-color: rgba(255, 255, 255, 0.05);
