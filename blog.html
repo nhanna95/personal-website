@@ -20,6 +20,11 @@ permalink: /blog.html
     <button type="reset" class="tag reset">Reset</button>
 </form>
 
+<div class="substack-notice">
+    <p>Want email notifications when I post? <a href="https://substack.com/@noxin" target="_blank"
+            rel="noopener noreferrer">Follow me on Substack</a>.</p>
+</div>
+
 <section class="post-list" id="welcome-post"></section>
 <section class="post-list" id="post-list">
     <!-- Posts will be injected from Jekyll collections -->
@@ -228,13 +233,13 @@ permalink: /blog.html
         const posts = [
             {% for post in site.posts %}
             {
-                title: {{ post.title | jsonify }},
-                url: "{{ post.url | relative_url }}",
-                date: "{{ post.date | date: '%Y-%m-%d' }}",
-                {% if post.updated %}updated: "{{ post.updated | date: '%Y-%m-%d' }}",{% endif %}
-                tags: {{ post.tags | jsonify }}
-            }{% unless forloop.last %},{% endunless %}
-            {% endfor %}
+        title: { { post.title | jsonify } },
+        url: "{{ post.url | relative_url }}",
+            date: "{{ post.date | date: '%Y-%m-%d' }}",
+                {% if post.updated %} updated: "{{ post.updated | date: '%Y-%m-%d' }}", {% endif %}
+    tags: { { post.tags | jsonify } }
+            }{% unless forloop.last %}, {% endunless %}
+    {% endfor %}
         ];
     // jshint ignore:end
 
