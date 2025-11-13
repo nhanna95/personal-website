@@ -9,6 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@14..144,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ site.baseurl }}/styles.css" />
+    <script>
+        // Apply theme immediately to prevent flash of unstyled content
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
 </head>
 
 <body>
@@ -24,7 +31,16 @@
             <a href="{{ '/contact.html' | relative_url }}" {% if page.url == '/contact.html' %}class="is-active"{% endif %}>Contact me</a>
         </nav>
 
-        <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+            <span class="theme-icon">🌙</span>
+        </button>
+
+        <div class="sidebar-header-buttons">
+            <button class="theme-toggle theme-toggle-mobile" id="theme-toggle-mobile" aria-label="Toggle dark mode" title="Toggle dark mode">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+        </div>
     </aside>
 
     <main class="content">
@@ -39,6 +55,38 @@
 
     <script>
         (function () {
+            // Theme management
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+            const html = document.documentElement;
+            
+            // Get saved theme or default to light
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            html.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+
+            function updateThemeIcon(theme) {
+                const icon = theme === 'dark' ? '☀️' : '🌙';
+                const icons = document.querySelectorAll('.theme-icon');
+                icons.forEach(el => el.textContent = icon);
+            }
+
+            function toggleTheme() {
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme);
+            }
+
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+            }
+            if (themeToggleMobile) {
+                themeToggleMobile.addEventListener('click', toggleTheme);
+            }
+
+            // Menu toggle
             const toggle = document.getElementById('menu-toggle');
             const sidebar = document.querySelector('.sidebar');
             if (!toggle || !sidebar) return;
