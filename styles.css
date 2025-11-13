@@ -444,7 +444,7 @@ a:hover {
 .tag-filter .substack-notice {
     flex-basis: 100%;
     order: 999;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 }
 
 .tag-filter input {
