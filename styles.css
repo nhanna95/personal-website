@@ -22,9 +22,6 @@
     --sidebar-bg: #1f1f1f;
 }
 
-[data-theme="dark"] .tagline {
-    color: #6ee7b7;
-}
 
 [data-theme="dark"] .post:hover {
     background-color: rgba(255, 255, 255, 0.05);
@@ -714,7 +711,9 @@ main:has(#tag-personal:checked) .post[data-tags~="personal"] {
     /* Topbar elements should always sit above the overlay */
     .sidebar .brand,
     .sidebar .tagline,
-    .sidebar .menu-toggle {
+    .sidebar .menu-toggle,
+    .sidebar .theme-toggle,
+    .sidebar .sidebar-header-buttons {
         position: relative;
         z-index: 1001;
     }
