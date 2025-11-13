@@ -23,7 +23,7 @@
 }
 
 [data-theme="dark"] .tagline {
-    color: #6db85a;
+    color: #6cae5b;
 }
 
 
@@ -626,7 +626,7 @@ main:has(#tag-personal:checked) .post[data-tags~="personal"] {
         margin-top: auto;
         align-self: flex-start;
     }
-    
+
     .theme-toggle-mobile,
     .sidebar-header-buttons {
         display: none;
@@ -638,12 +638,12 @@ main:has(#tag-personal:checked) .post[data-tags~="personal"] {
     .theme-toggle:not(.theme-toggle-mobile) {
         display: none;
     }
-    
+
     .theme-toggle-mobile {
         display: inline-flex;
         margin: 0;
     }
-    
+
     .sidebar-header-buttons {
         display: flex;
     }
@@ -799,7 +799,8 @@ main:has(#tag-personal:checked) .post[data-tags~="personal"] {
 
     .content {
         margin: 0;
-        padding: 39px 24px 24px; /* Reduced top padding by 30% from 56px */
+        padding: 39px 24px 24px;
+        /* Reduced top padding by 30% from 56px */
         min-height: 100vh;
         font-size: 1rem;
         align-items: flex-start;
