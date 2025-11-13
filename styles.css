@@ -431,18 +431,20 @@ a:hover {
 
 /* ====== Tag Filter (UNION / OR) ====== */
 .tag-filter {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
     margin: 0 0 1rem 0;
     position: relative;
     padding-right: 80px;
+    padding-bottom: 0;
     /* Make room for reset button */
 }
 
-.tag-filter input + label.tag:not(.reset) {
-    display: inline-block;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-    vertical-align: middle;
+.tag-filter .substack-notice {
+    flex-basis: 100%;
+    order: 999;
+    margin-top: 0.5rem;
 }
 
 .tag-filter input {
