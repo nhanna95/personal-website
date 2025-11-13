@@ -390,13 +390,12 @@ body {
 }
 
 .substack-notice {
-    margin: 0;
+    margin: 1.5rem 0 1.5rem 0;
     padding: 0.75rem 1rem;
     background: #f9fafb;
     border-left: 3px solid var(--link);
     border-radius: 4px;
     font-size: 0.95em;
-    margin-top: 0.5rem;
 }
 
 .substack-notice p {
@@ -437,14 +436,7 @@ a:hover {
     margin: 0 0 1rem 0;
     position: relative;
     padding-right: 80px;
-    padding-bottom: 0;
     /* Make room for reset button */
-}
-
-.tag-filter .substack-notice {
-    flex-basis: 100%;
-    order: 999;
-    margin-top: 1rem;
 }
 
 .tag-filter input {
