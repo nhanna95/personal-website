@@ -22,7 +22,8 @@ permalink: /blog.html
 
 <div class="substack-notice">
     <p>If you'd like email notifications when I release new posts, you can <a
-            href="https://noxin.substack.com/subscribe" target="_blank" rel="noopener noreferrer"><em>subscribe to my Substack</em></a>.</p>
+            href="https://noxin.substack.com/subscribe" target="_blank" rel="noopener noreferrer"><em>subscribe to my
+                Substack</em></a>.</p>
 </div>
 
 <section class="post-list" id="welcome-post"></section>
@@ -233,13 +234,13 @@ permalink: /blog.html
         const posts = [
             {% for post in site.posts %}
             {
-                title: {{ post.title | jsonify }},
-                url: "{{ post.url | relative_url }}",
-                date: "{{ post.date | date: '%Y-%m-%d' }}",
-                {% if post.updated %}updated: "{{ post.updated | date: '%Y-%m-%d' }}",{% endif %}
-                tags: {{ post.tags | jsonify }}
-            }{% unless forloop.last %},{% endunless %}
-            {% endfor %}
+        title: { { post.title | jsonify } },
+        url: "{{ post.url | relative_url }}",
+            date: "{{ post.date | date: '%Y-%m-%d' }}",
+                {% if post.updated %} updated: "{{ post.updated | date: '%Y-%m-%d' }}", {% endif %}
+    tags: { { post.tags | jsonify } }
+            }{% unless forloop.last %}, {% endunless %}
+    {% endfor %}
         ];
     // jshint ignore:end
 
