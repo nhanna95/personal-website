@@ -2,6 +2,7 @@
 layout: post
 title: "20 Lessons I’ve Learned by My 20th Birthday"
 date: 2025-11-22
+substack: https://noxin.substack.com/p/20-lessons-ive-learned-by-my-20th
 tags: [Advice]
 ---
 
