@@ -202,6 +202,7 @@ You grow and learn when you are at your limit and the only way to find your limi
 
 > "How you gonna knock somebody down for actually trying to do something? Since when was it becoming not cool to try?"
 >	-A$AP Rocky
+
 ## Why I wrote this
 
 This last semester has been quite difficult. There has been a lot going on, both academically and personally. Additionally, I have been thinking about the future quite a bit. It has been very stressful, and in stressful times, we must rely on what we have learned to help guide us through. As a result, I've been thinking a lot about what I find important to me and ways in which I try to identify the best way forward. As a result, I've become much more mindful of these lessons lately and thought it would be beneficial to discuss them in a blog post.
