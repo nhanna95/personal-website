@@ -486,6 +486,10 @@ blockquote p:not(:last-child) {
     background: #fafafa;
 }
 
+[data-theme="dark"] .tag-filter .tag:hover {
+    background: #353535;
+}
+
 .tag-filter .reset {
     position: absolute;
     top: 0;
