@@ -3,6 +3,7 @@ layout: post
 title: "Finding My Obsession with Sehoon"
 date: 2025-11-22
 tags: [Reflections]
+substack: https://substack.com/home/post/p-179697920
 ---
 
 I just got dinner with a good friend of mine, Sehoon. Sehoon and I are in quite separate areas and groups and don't get to see each other very often, but when we do see each other, we always have great conversations. After catching each other up with what's new in our lives, we began discussing finding things to become obsessed with. Sehoon is someone who easily gets obsessed with things, especially research. I, on the other hand, have been having trouble finding something which I am very passionate about and can spend endless time on.
