@@ -7,3 +7,4 @@ vendor/bundle/
 vendor/cache/
 Gemfile.lock
 .DS_Store
+.cursor/
