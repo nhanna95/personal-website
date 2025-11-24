@@ -4,10 +4,22 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- Favicons for various platforms -->
     <link rel="icon" href="{{ site.baseurl }}/monogram.png" type="image/png" />
+    <link rel="shortcut icon" href="{{ site.baseurl }}/monogram.png" type="image/png" />
+    <link rel="apple-touch-icon" href="{{ site.baseurl }}/monogram.png" />
+
+    <!-- Site icon for Google Search -->
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ site.baseurl }}/monogram.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/monogram.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ site.baseurl }}/monogram.png" />
+
     <title>{% if page.title %}{{ page.title }} — {% endif %}Nixon Hanna</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@14..144,600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@14..144,600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="{{ site.baseurl }}/styles.css" />
     <script>
         // Apply theme immediately to prevent flash of unstyled content.
@@ -26,10 +38,13 @@
         <p class="tagline">Constantly finding new interests</p>
 
         <nav class="nav" id="site-nav">
-            <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="is-active"{% endif %}>Hello</a>
-            <a href="{{ '/about.html' | relative_url }}" {% if page.url == '/about.html' %}class="is-active"{% endif %}>About</a>
-            <a href="{{ '/blog.html' | relative_url }}" {% if page.url == '/blog.html' %}class="is-active"{% endif %}>Blog</a>
-            <a href="{{ '/contact.html' | relative_url }}" {% if page.url == '/contact.html' %}class="is-active"{% endif %}>Contact me</a>
+            <a href="{{ '/' | relative_url }}" {% if page.url=='/' %}class="is-active" {% endif %}>Hello</a>
+            <a href="{{ '/about.html' | relative_url }}" {% if page.url=='/about.html' %}class="is-active" {% endif
+                %}>About</a>
+            <a href="{{ '/blog.html' | relative_url }}" {% if page.url=='/blog.html' %}class="is-active" {% endif
+                %}>Blog</a>
+            <a href="{{ '/contact.html' | relative_url }}" {% if page.url=='/contact.html' %}class="is-active" {% endif
+                %}>Contact me</a>
         </nav>
 
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
@@ -37,7 +52,8 @@
         </button>
 
         <div class="sidebar-header-buttons">
-            <button class="theme-toggle theme-toggle-mobile" id="theme-toggle-mobile" aria-label="Toggle dark mode" title="Toggle dark mode">
+            <button class="theme-toggle theme-toggle-mobile" id="theme-toggle-mobile" aria-label="Toggle dark mode"
+                title="Toggle dark mode">
                 <span class="theme-icon">🌙</span>
             </button>
             <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
@@ -54,7 +70,7 @@
             const themeToggle = document.getElementById('theme-toggle');
             const themeToggleMobile = document.getElementById('theme-toggle-mobile');
             const html = document.documentElement;
-            
+
             // Get saved theme or default to dark
             const savedTheme = localStorage.getItem('theme') || 'dark';
             html.setAttribute('data-theme', savedTheme);
@@ -95,4 +111,3 @@
 </body>
 
 </html>
-
