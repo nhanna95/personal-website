@@ -209,6 +209,14 @@ body {
     margin: 2rem 0 .5rem;
 }
 
+.last-updated {
+    margin-bottom: 0.5rem;
+}
+
+.last-updated+.h2 {
+    margin-top: 0.75rem;
+}
+
 .lead {
     font-size: 1.125rem;
 }
