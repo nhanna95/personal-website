@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Ensure favicon and images are accessible
+Allow: /favicon.ico
+Allow: /monogram.png
+Allow: /headshot.jpg
+
+Sitemap: https://nixonhanna.com/sitemap.xml
+

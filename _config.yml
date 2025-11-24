@@ -27,6 +27,8 @@ include:
   - styles.css
   - headshot.jpg
   - monogram.png
+  - favicon.ico
+  - robots.txt
 
 # Exclude from processing
 exclude:
