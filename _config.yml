@@ -8,6 +8,11 @@ baseurl: ""  # Empty for custom domain (served from root)
 markdown: kramdown
 highlighter: rouge
 
+# Sass configuration
+sass:
+  style: compressed
+  encoding: utf-8
+
 # Collections
 collections:
   posts:
@@ -39,6 +44,7 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - assets/
 
 # Plugins for GitHub Pages (github-pages gem handles the plugin list)
 plugins: []
