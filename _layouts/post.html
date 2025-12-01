@@ -62,7 +62,7 @@
                     <div class="entry-dates">
                         <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%b %-d, %Y' }}</time>
                         {% assign words = content | strip_html | number_of_words %}
-                        {% assign read_time = words | divided_by: 200.0 | ceil %}
+                        {% assign read_time = words | divided_by: 225.0 | ceil %}
                         {% if read_time < 1 %}
                         {% assign read_time = 1 %}
                         {% endif %}
