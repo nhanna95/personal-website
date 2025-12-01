@@ -61,6 +61,13 @@
                 <div class="entry-meta">
                     <div class="entry-dates">
                         <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%b %-d, %Y' }}</time>
+                        {% assign words = content | strip_html | number_of_words %}
+                        {% assign read_time = words | divided_by: 200.0 | ceil %}
+                        {% if read_time < 1 %}
+                        {% assign read_time = 1 %}
+                        {% endif %}
+                        <span class="entry-date-separator">·</span>
+                        <span class="entry-read-time">{{ read_time }} min read</span>
                         {% if page.updated %}
                         <span class="entry-date-separator">·</span>
                         <span class="entry-updated">Updated <time datetime="{{ page.updated | date: '%Y-%m-%d' }}">{{
